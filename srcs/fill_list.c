@@ -6,28 +6,25 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:23:18 by armosnie          #+#    #+#             */
-/*   Updated: 2025/01/27 17:24:20 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/30 10:11:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void fill_list(t_stack **stack_a, int ac, char **av)
+void fill_list(t_stack **stack, int ac, char **av)
 {
     int i;
-    t_stack *lst;
-    t_stack *new;
+    t_stack *stack;
 
-    lst = NULL;
     i = 1;
     while (i < ac)
     {
-        new = ft_lstnew(atoi(av[i]));
-        ft_lstadd_back(&lst, new);
+        add_node(&stack, atoi(av[i]));
         if (i == 1)
-            *stack_a = lst;
-        lst = lst->next;
+            *stack = stack;
+        stack = stack->next;
         i++;
     }
-    return (lst);
+    return (stack);
 }
