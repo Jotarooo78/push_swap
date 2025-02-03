@@ -4,6 +4,7 @@
 typedef struct s_stack
 {
     int value;
+    int cost;
     struct s_stack *next;
     
 } t_stack;
@@ -13,19 +14,15 @@ typedef struct s_stack
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include <stdbool.h>
 
 // list functions
 
 t_stack	*ft_lstlast(t_stack *lst);
-t_stack	*ft_lstnew(int value);
-void    ft_lstadd_back(t_stack **lst, t_stack *new_node);
-void	ft_lstadd_front(t_stack **lst, t_stack *new_node);
 int ft_lstsize(t_stack *lst);
+int add_node(t_stack **list, int n);
 // void	ft_lstdelone(t_stack *lst, void (*del)(int *));
 // void	ft_lstclear(t_stack **lst, void (*del)(int *));
 void fill_list(t_stack **stack_a, int ac, char **av);
-int add_node(t_stack **list, int n);
 
 // instruction functions
 
@@ -64,5 +61,11 @@ int	only_decimal_and_sign(int c);
 int	ft_has_dup(int ac, char **av);
 int	only_decimal_and_sign(int c);
 
+// sort functions
+
+t_stack   *find_highest(t_stack **stack);
+t_stack  *find_lowest(t_stack **stack);
+void  small_sort(t_stack **stack);
+void  sort_list(t_stack **stack_a, t_stack **stack_b);
 
 #endif

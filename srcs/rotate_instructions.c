@@ -37,7 +37,7 @@ int   rotate_a(t_stack **stack_a)
     else
     {
         rotate(stack_a);
-        write(1, "ra\n", 3);   
+        write(1, "ra\n", 3);
     }
     return (1);
 }
@@ -49,7 +49,7 @@ int    rotate_b(t_stack **stack_b)
     else
     {
         rotate(stack_b);
-        write(1, "rb\n", 3);   
+        write(1, "rb\n", 3);
     }
     return (1);
 }
