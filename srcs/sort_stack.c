@@ -12,6 +12,20 @@
 
 #include "../includes/push_swap.h"
 
+int   stack_sorted(t_stack **stack_a) 
+{
+   t_stack  *current;
+
+   current = *stack_a;
+   while (current->next)
+   {
+      if (current->value > current->next->value)
+         return (0);
+      current = current->next;
+   }
+   return (1);
+}
+
 t_stack  *find_lowest(t_stack **stack)
 {
    t_stack *current;
@@ -61,21 +75,20 @@ void  small_sort(t_stack **stack)
    if ((*stack)->value == highest->value)
       rotate_a(stack);
    else if ((*stack)->next->value == highest->value)
-      rotate_a(stack);stack
+      rotate_a(stack);
    if ((*stack)->value > (*stack)->next->value)
-      swap_a();
+      swap_a(stack);
 }
 
-void  sort_list(t_stack **stack_a, t_stack **stack_b)
+void  sort_stack(t_stack **stack_a, t_stack **stack_b)
 {
-   while ()
+   push_a(&stack_a, &stack_b);
+   push_a(&stack_a, &stack_b);
+   while (*stack_a != find_lowest(stack_a) && *stack_a != find_highest(stack_a))
    {
-      while (*stack_a != find_lowest(stack_a) && *stack_a != find_highest(stack_a))
-      {
-         push_a(stack_a);
-         stack_a = stack_a->next;
-      }
-      if (ft_lstsize(*stack_a) < 4)
-         small_sort(stack_a);
+      push_a(stack_a, stack_b);
+      *stack_a = (*stack_a)->next;
    }
+   if (ft_lstsize(*stack_a) < 4)
+      small_sort(stack_a);
 }

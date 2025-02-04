@@ -22,16 +22,16 @@ int main()
     fill_list(&stack_a, ac, av);
     sort_list(&stack, &stack_b);
     
-    // add_node(&stack_a, 1);
-    // add_node(&stack_a, 2);
-    // add_node(&stack_a, 3);
-    // add_node(&stack_a, 4);
-    // add_node(&stack_b, 5);
-    // add_node(&stack_b, 6);
-    // add_node(&stack_b, 7);
-    // add_node(&stack_b, 8);
+    add_node(&stack_a, 1);
+    add_node(&stack_a, 2);
+    add_node(&stack_a, 3);
+    add_node(&stack_a, 4);
+    add_node(&stack_b, 5);
+    add_node(&stack_b, 6);
+    add_node(&stack_b, 7);
+    add_node(&stack_b, 8);
 
-    // print_stack(stack_a);
-    // print_stack(stack_b);
+    print_stack(stack_a);
+    print_stack(stack_b);
     return (0);
 }

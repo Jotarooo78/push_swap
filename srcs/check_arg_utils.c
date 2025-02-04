@@ -6,29 +6,37 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 11:43:55 by armosnie          #+#    #+#             */
-/*   Updated: 2025/01/27 14:54:02 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/04 15:40:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	only_decimal_and_sign(int c)
+int	only_valid_characters(char c)
 {
-	if ((c >= 0 && c <= 9) || c == '-' || c == '+')
+	while ((c >= 0 && c <= 9) || (c >= '0' && c <= '9') || c == '-' || c == '+')
 		return (1);
 	return (0);
 }
 
-int	ft_has_dup(int ac, char **av)
+int	is_alpha(char c)
+{
+	while (c >= 'a' && c <= 'z')
+		return (1);
+	return (0);
+}
+
+long	ft_has_dup(int ac, long nbr)
 {
 	int	i;
 	int	j;
+	int	size;
 
-	i = 1;
+	i = 0;
 	while (i < ac)
 	{
 		j = i + 1;
-		if (av[i] == av[j])
+		while ()
 			return (1);
 		i++;
 	}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_arg.c                                        :+:      :+:    :+:   */
+/*   check_imput.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 14:54:29 by armosnie          #+#    #+#             */
-/*   Updated: 2025/01/27 14:57:24 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/04 15:43:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ int	correct_imput(int ac, char **av)
 {
 	int i;
 	int j;
-	int	tmp;
+	int tmp;
 	
-	i = 1;
+	i = 0;
 	while (i < ac)
 	{
-		j = 0;
+		j = 1;
 		while (av[i][j])
 		{
-			if (only_decimal_and_sign(av[i][j]) == 0)
+			if (only_valid_characters(av[i][j]) == 0)
 				return (0);
 			j++;
 		}

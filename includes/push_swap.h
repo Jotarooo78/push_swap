@@ -22,7 +22,7 @@ int ft_lstsize(t_stack *lst);
 int add_node(t_stack **list, int n);
 // void	ft_lstdelone(t_stack *lst, void (*del)(int *));
 // void	ft_lstclear(t_stack **lst, void (*del)(int *));
-void fill_list(t_stack **stack_a, int ac, char **av);
+void fill_stack(t_stack **stack_a, int ac, char **av);
 
 // instruction functions
 
@@ -55,17 +55,19 @@ int	ft_unsigned_putnbr_base(unsigned long n, char *base, int baselen);
 
 //parcing functions
 
-int	correct_imput(int ac, char **av);
+long	ft_atol(char *nbr);
 int	check_arg(int ac, char **av);
-int	only_decimal_and_sign(int c);
+int	only_valid_characters(char c);
 int	ft_has_dup(int ac, char **av);
 int	only_decimal_and_sign(int c);
+int	correct_imput(int ac, char **av);
 
 // sort functions
 
+int   stack_sorted(t_stack **stack_a);
 t_stack   *find_highest(t_stack **stack);
 t_stack  *find_lowest(t_stack **stack);
 void  small_sort(t_stack **stack);
-void  sort_list(t_stack **stack_a, t_stack **stack_b);
+void  sort_stack(t_stack **stack_a, t_stack **stack_b);
 
 #endif
