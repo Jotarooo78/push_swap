@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:03:49 by armosnie          #+#    #+#             */
-/*   Updated: 2025/02/05 16:51:42 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:27:59 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,19 @@
 // 		(*lst) = tmp;
 // 	}
 // }
+
+int	ft_lstsize(t_stack *lst)
+{
+	size_t	i;
+
+	i = 0;
+	while (lst)
+	{
+		i++;
+		lst = lst->next;
+	}
+	return (i);
+}
 
 int	ft_lstsize(t_stack *lst)
 {

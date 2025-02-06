@@ -33,6 +33,7 @@ t_stack  *find_lowest(t_stack **stack)
    int   min;
    int   index;
 
+   index = ft_lstsize(stack);
    min = INT_MAX;
    current = *stack;
    low_value = *stack;
