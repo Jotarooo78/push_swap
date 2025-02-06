@@ -31,11 +31,7 @@ t_stack  *find_lowest(t_stack **stack)
    t_stack *current;
    t_stack *low_value;
    int   min;
-
-   min = INT_MAX;
-   current = *stack;
-   low_value = *stack;
-   while (current)
+   int   index;
 
    min = INT_MAX;
    current = *stack;
@@ -73,7 +69,9 @@ t_stack   *find_highest(t_stack **stack)
    return (big_value);
 }
 
-//fonction qui trouve le intmax le intmin 
+
+
+//fonction qui trouve le intmax, le intmin 
 //et l'index du intmax et du intmin
 
 //si le top de a est plus petit que le plus petit element de b
