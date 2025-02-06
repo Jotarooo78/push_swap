@@ -5,6 +5,10 @@ typedef struct s_stack
 {
     int value;
     int cost;
+    int median;
+    int index;
+    int min;
+    int max;
     struct s_stack *next;
     
 } t_stack;

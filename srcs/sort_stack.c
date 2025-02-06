@@ -30,7 +30,12 @@ t_stack  *find_lowest(t_stack **stack)
 {
    t_stack *current;
    t_stack *low_value;
-   int min;
+   int   min;
+
+   min = INT_MAX;
+   current = *stack;
+   low_value = *stack;
+   while (current)
 
    min = INT_MAX;
    current = *stack;
@@ -67,6 +72,41 @@ t_stack   *find_highest(t_stack **stack)
    }
    return (big_value);
 }
+
+//fonction qui trouve le intmax le intmin 
+//et l'index du intmax et du intmin
+
+//si le top de a est plus petit que le plus petit element de b
+//en dessous du plus petit element de b
+
+//si le top de a est plus grand que le plus grand element de b
+// au dessus du plus grand element de b
+// if (node > stack_a->intmax)
+//    return (stack_a->indexmax)
+// else if (node > stack_a>intmin)
+//    return(stack_a->indexmin+1)
+
+
+int   target_node(t_stack *node, t_stack **stack_a, t_stack **stack_b)
+{
+   int   index;
+
+   index = 0;
+   if (ft_lstlast(stack_b)->value > node > (*stack_b)->value)
+   {
+      index++;
+      return (index);
+   }
+   while (stack_b)
+   {
+      if ((*stack_b)->value > node > (*stack_b)->next->value)
+         return (index);
+      stack_b = (*stack_b)->next;
+      index++;
+   }
+   return (index);
+}
+
 void  small_sort(t_stack **stack)
 {
    t_stack *highest;
@@ -82,13 +122,16 @@ void  small_sort(t_stack **stack)
 
 void  sort_stack(t_stack **stack_a, t_stack **stack_b)
 {
-   push_a(&stack_a, &stack_b);
-   push_a(&stack_a, &stack_b);
-   while (*stack_a != find_lowest(stack_a) && *stack_a != find_highest(stack_a))
+   if (ft_lstsize(stack_a) > 3)
    {
-      push_a(stack_a, stack_b);
-      *stack_a = (*stack_a)->next;
+      push_a(&stack_a, &stack_b);
+      push_a(&stack_a, &stack_b);
    }
-   if (ft_lstsize(*stack_a) < 4)
-      small_sort(stack_a);
+   while (ft_lstsize(stack_a) != 3)
+   {
+      
+      *stack_a = (*stack_a)->next;
+      push_a(stack_a, stack_b);
+   }
+   small_sort(stack_a);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:03:49 by armosnie          #+#    #+#             */
-/*   Updated: 2025/01/30 10:08:29 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/05 16:51:42 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ t_stack	*ft_lstlast(t_stack *lst)
 		lst = lst->next;
 	return (lst);
 }
+
+
 
 int add_node(t_stack **list, int nb) 
 {
