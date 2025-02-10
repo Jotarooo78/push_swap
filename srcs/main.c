@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:00:53 by armosnie          #+#    #+#             */
-/*   Updated: 2025/02/04 15:27:35 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/10 11:28:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int main(int ac, char **av)
     stack_b = NULL;
     ac -= 1;
     av += 1;
-    if (correct_imput(ac, av) == 0)
-        return (ft_printf("Error\n"));
+    // if (correct_imput(ac, av) == 0)
+    //     return (ft_printf("Error\n"));
     fill_stack(&stack_a, ac, av);
     if (stack_sorted(&stack_a) == 0)
     {

@@ -6,9 +6,9 @@ typedef struct s_stack
     int value;
     int cost;
     int median;
+    int max_index;
+    int min_index;
     int index;
-    int min;
-    int max;
     struct s_stack *next;
     
 } t_stack;
@@ -73,5 +73,6 @@ t_stack   *find_highest(t_stack **stack);
 t_stack  *find_lowest(t_stack **stack);
 void  small_sort(t_stack **stack);
 void  sort_stack(t_stack **stack_a, t_stack **stack_b);
+t_stack  *target_node(t_stack *node, t_stack **stack);
 
 #endif

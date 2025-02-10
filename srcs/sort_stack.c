@@ -12,11 +12,11 @@
 
 #include "../includes/push_swap.h"
 
-int   stack_sorted(t_stack **stack_a) 
+int   stack_sorted(t_stack **a) 
 {
    t_stack  *current;
 
-   current = *stack_a;
+   current = *a;
    while (current->next)
    {
       if (current->value > current->next->value)
@@ -31,9 +31,7 @@ t_stack  *find_lowest(t_stack **stack)
    t_stack *current;
    t_stack *low_value;
    int   min;
-   int   index;
 
-   index = ft_lstsize(stack);
    min = INT_MAX;
    current = *stack;
    low_value = *stack;
@@ -53,7 +51,7 @@ t_stack   *find_highest(t_stack **stack)
 {
    t_stack *current;
    t_stack *big_value;
-   int max;
+   int   max;
 
    max = INT_MIN;
    current = *stack;
@@ -69,41 +67,49 @@ t_stack   *find_highest(t_stack **stack)
    }
    return (big_value);
 }
-
-
-
-//fonction qui trouve le intmax, le intmin 
-//et l'index du intmax et du intmin
-
-//si le top de a est plus petit que le plus petit element de b
-//en dessous du plus petit element de b
-
-//si le top de a est plus grand que le plus grand element de b
-// au dessus du plus grand element de b
-// if (node > stack_a->intmax)
-//    return (stack_a->indexmax)
-// else if (node > stack_a>intmin)
-//    return(stack_a->indexmin+1)
-
-
-int   target_node(t_stack *node, t_stack **stack_a, t_stack **stack_b)
+int   node_pos(t_stack **stack, t_stack *target)
 {
+   t_stack *current;
    int   index;
 
    index = 0;
-   if (ft_lstlast(stack_b)->value > node > (*stack_b)->value)
+   current = *stack;
+   while (target->value != current->value)
    {
-      index++;
-      return (index);
-   }
-   while (stack_b)
-   {
-      if ((*stack_b)->value > node > (*stack_b)->next->value)
-         return (index);
-      stack_b = (*stack_b)->next;
+      current = current->next;
       index++;
    }
    return (index);
+}
+
+t_stack  *set_median_up(t_stack **stack)
+{
+   
+}
+
+t_stack  *target_node(t_stack *node, t_stack **stack)
+{
+   t_stack *current;
+   t_stack  *target;
+   int min;
+
+   min = INT_MIN;
+   current = *stack;
+   while (current)
+   {
+      if (node->value > current->value && current->value > min)
+      {
+         target = current;
+         min = target->value;
+      }
+      else
+      {
+         target = find_highest(stack);
+      }
+      current = current->next;
+   }
+   target->index = node_pos(stack, target);
+   return (target);
 }
 
 void  small_sort(t_stack **stack)
@@ -119,18 +125,17 @@ void  small_sort(t_stack **stack)
       swap_a(stack);
 }
 
-void  sort_stack(t_stack **stack_a, t_stack **stack_b)
-{
-   if (ft_lstsize(stack_a) > 3)
-   {
-      push_a(&stack_a, &stack_b);
-      push_a(&stack_a, &stack_b);
-   }
-   while (ft_lstsize(stack_a) != 3)
-   {
-      
-      *stack_a = (*stack_a)->next;
-      push_a(stack_a, stack_b);
-   }
-   small_sort(stack_a);
-}
+// void  sort_stack(t_stack **a, t_stack **b)
+// {
+//    if (ft_lstsize(*a) > 3)
+//    {
+//       push_a(b, a);
+//       push_a(b, a);
+//    }
+//    while (ft_lstsize(*a) != 3)
+//    {
+//       target_node(a, *b);
+//       push_a(b, a);
+//    }
+//    small_sort(a);
+// }
