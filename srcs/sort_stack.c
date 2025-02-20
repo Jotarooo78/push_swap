@@ -67,25 +67,17 @@ t_stack   *find_highest(t_stack **stack)
    }
    return (big_value);
 }
-int   node_pos(t_stack **stack, t_stack *target)
-{
-   t_stack *current;
-   int   index;
 
-   index = 0;
-   current = *stack;
-   while (target->value != current->value)
-   {
-      current = current->next;
-      index++;
-   }
-   return (index);
-}
+// t_stack  *set_median_up(t_stack **stack, int index)
+// {
+//    t_stack *lst;
 
-t_stack  *set_median_up(t_stack **stack)
-{
-   
-}
+//    lst = ft_lstsize(stack);
+//    if (index  lst / 2)
+//       return (1);
+//    else
+//       return (0);
+// }
 
 t_stack  *target_node(t_stack *node, t_stack **stack)
 {
@@ -110,6 +102,35 @@ t_stack  *target_node(t_stack *node, t_stack **stack)
    }
    target->index = node_pos(stack, target);
    return (target);
+}
+
+int   node_pos(t_stack **stack, t_stack *target)
+{
+   t_stack *current;
+   int   index;
+
+   index = 0;
+   current = *stack;
+   while (target->value != current->value)
+   {
+      current = current->next;
+      index++;
+   }
+   return (index);
+}
+
+t_stack  *calcul_cost(t_stack **a, t_stack **b, int index)
+{
+   t_stack *current_a;
+   t_stack *current_b;
+   int   tmp;
+
+   current_a = *a;
+   current_b = *b;
+   while (current_a)
+   {
+      
+   }
 }
 
 void  small_sort(t_stack **stack)
