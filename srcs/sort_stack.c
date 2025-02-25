@@ -68,17 +68,6 @@ t_stack   *find_highest(t_stack **stack)
    return (big_value);
 }
 
-// t_stack  *set_median_up(t_stack **stack, int index)
-// {
-//    t_stack *lst;
-
-//    lst = ft_lstsize(stack);
-//    if (index  lst / 2)
-//       return (1);
-//    else
-//       return (0);
-// }
-
 t_stack  *target_node(t_stack *node, t_stack **stack)
 {
    t_stack *current;

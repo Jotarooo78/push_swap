@@ -1,0 +1,97 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/12 11:56:39 by armosnie          #+#    #+#             */
+/*   Updated: 2025/02/24 15:11:07 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/push_swap.h"
+
+int	count_words(char *s, char c)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (s[i])
+	{
+		while (s[i] && s[i] == c)
+			i++;
+		if (s[i] && s[i] != c)
+		{
+			count++;
+			while (s[i] && s[i] != c)
+				i++;
+		}
+	}
+	return (count);
+}
+
+char	*dup_word(char *s, char c)
+{
+	int		i;
+	char	*dup;
+
+	i = 0;
+	while (s[i] && s[i] != c)
+		i++;
+	dup = malloc(sizeof(char) * (i + 1));
+	if (dup == NULL)
+		return (NULL);
+	i = 0;
+	while (s[i] && s[i] != c)
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
+
+static void	free_all(char **split)
+{
+	int	j;
+
+	j = 0;
+	while (split[j])
+	{
+		free(split[j]);
+		j++;
+	}
+	free(split);
+}
+
+char	**ft_split(char *s, char c)
+{
+	char	**split;
+	int		j;
+	int		i;
+
+	i = 0;
+	j = 0;
+	split = malloc(sizeof(char *) * (count_words(s, c) + 1));
+	if (split == NULL || s == NULL)
+		return (NULL);
+	while (s[i])
+	{
+		while (s[i] && s[i] == c)
+			i++;
+		if (s[i] && s[i] != c)
+		{
+			split[j] = dup_word(&s[i], c);
+			if (split[j++] == NULL)
+				return (free_all(split), NULL);
+			while (s[i] && s[i] != c)
+				i++;
+		}
+		else
+			break ;
+	}
+	return (split[j] = NULL, split);
+}

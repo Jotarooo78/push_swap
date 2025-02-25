@@ -27,38 +27,38 @@ void  rev_rotate(t_stack **stack)
     *stack = last_node;
     before_last_node->next = NULL;
 }
-int   rev_rotate_a(t_stack **stack_a)
+int   rev_rotate_a(t_stack **a)
 {
-    if (ft_lstsize(*stack_a) < 2)
+    if (ft_lstsize(*a) < 2)
         return (0) ;
     else
     {
-        rev_rotate(stack_a);
+        rev_rotate(a);
         write(1, "rra\n", 4);   
     }
     return (1);
 }
 
-int    rev_rotate_b(t_stack **stack_b)
+int    rev_rotate_b(t_stack **b)
 {
-    if (ft_lstsize(*stack_b) < 2)
+    if (ft_lstsize(*b) < 2)
         return (0) ;
     else
     {
-        rev_rotate(stack_b);
+        rev_rotate(b);
         write(1, "rrb\n", 4);   
     }
     return (1);
 }
 
-int    rev_rotate_rr(t_stack **stack_a, t_stack **stack_b)
+int    rev_rotate_rr(t_stack **a, t_stack **b)
 {
-    if (ft_lstsize(*stack_a) < 2 || ft_lstsize(*stack_b) < 2)
+    if (ft_lstsize(*a) < 2 || ft_lstsize(*b) < 2)
         return (0) ;
     else
     {
-        rev_rotate_a(stack_a);
-        rev_rotate_b(stack_b);
+        rev_rotate(a);
+        rev_rotate(b);
         write(1, "rrr\n", 4);
     }
     return (1);

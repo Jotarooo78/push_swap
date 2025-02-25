@@ -30,38 +30,38 @@ void  rotate(t_stack **stack)
             current = current->next;
     }
 }
-int   rotate_a(t_stack **stack_a)
+int   rotate_a(t_stack **a)
 {
-    if (ft_lstsize(*stack_a) < 2)
+    if (ft_lstsize(*a) < 2)
         return (0) ;
     else
     {
-        rotate(stack_a);
+        rotate(a);
         write(1, "ra\n", 3);
     }
     return (1);
 }
 
-int    rotate_b(t_stack **stack_b)
+int    rotate_b(t_stack **b)
 {
-    if (ft_lstsize(*stack_b) < 2)
+    if (ft_lstsize(*b) < 2)
         return (0) ;
     else
     {
-        rotate(stack_b);
+        rotate(b);
         write(1, "rb\n", 3);
     }
     return (1);
 }
 
-int    rotate_rr(t_stack **stack_a, t_stack **stack_b)
+int    rotate_rr(t_stack **a, t_stack **b)
 {
-    if (ft_lstsize(*stack_a) < 2 || ft_lstsize(*stack_b) < 2)
+    if (ft_lstsize(*a) < 2 || ft_lstsize(*b) < 2)
         return (0) ;
     else
     {
-        rotate_a(stack_a);
-        rotate_b(stack_b);
+        rotate(a);
+        rotate(b);
         write(1, "rr\n", 3);
     }
     return (1);

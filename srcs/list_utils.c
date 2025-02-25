@@ -6,35 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:03:49 by armosnie          #+#    #+#             */
-/*   Updated: 2025/02/10 11:15:32 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/24 13:15:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-// void	ft_lstdelone(t_stack *lst, void (*del)(int *))
-// {
-// 	if (lst == NULL || del == NULL)
-// 		return ;
-// 	(*del)(lst->value);
-// 	free(lst);
-// }
-
-// void	ft_lstclear(t_stack **lst, void (*del)(int *))
-// {
-// 	t_stack	*tmp;
-
-// 	tmp = NULL;
-// 	if (*lst == NULL || lst == NULL || del == NULL)
-// 		return ;
-// 	while (lst && *lst)
-// 	{
-// 		tmp = (*lst)->next;
-// 		ft_lstdelone(*lst, *del);
-// 		(*lst) = tmp;
-// 	}
-// }
-
 
 int	ft_lstsize(t_stack *lst)
 {

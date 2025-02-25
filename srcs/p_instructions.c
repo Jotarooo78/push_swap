@@ -22,25 +22,25 @@ void    push(t_stack **stack_src, t_stack **stack_dest)
     *stack_src = tmp; // mise a jour de la liste src
 }
 
-int push_a(t_stack **stack_b, t_stack **stack_a)
+int push_a(t_stack **b, t_stack **a)
 {
-    if (ft_lstsize(*stack_b) < 2)
+    if (ft_lstsize(*b) < 2)
         return (0);
     else
     {
-        push(stack_b, stack_a);
+        push(b, a);
         write(1, "pa\n", 3);
     }
     return (1);
 }
 
-int push_b(t_stack **stack_a, t_stack **stack_b)
+int push_b(t_stack **a, t_stack **b)
 {
-    if (ft_lstsize(*stack_a) < 2)
+    if (ft_lstsize(*a) < 2)
         return (0);
     else
     {
-        push(stack_a, stack_b);
+        push(a, b);
         write(1, "pb\n", 3);
     }
     return (1);
