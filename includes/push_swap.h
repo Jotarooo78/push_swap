@@ -69,8 +69,9 @@ void fill_stack_a(t_stack **a, char **av);
 int   stack_sorted(t_stack **stack_a);
 t_stack   *find_highest(t_stack **stack);
 t_stack  *find_lowest(t_stack **stack);
+void   node_pos(t_stack *stack);
 void  small_sort(t_stack **stack);
 void  sort_stack(t_stack **stack_a, t_stack **stack_b);
-t_stack  *target_node(t_stack *node, t_stack **stack);
+t_stack  *define_target(t_stack *node, t_stack **stack);
 
 #endif
