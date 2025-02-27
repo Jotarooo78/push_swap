@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_stack.c                                       :+:      :+:    :+:   */
+/*   check_and_fill_stack.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:23:18 by armosnie          #+#    #+#             */
-/*   Updated: 2025/02/24 16:22:58 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/26 16:31:57 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,18 @@ int correct_imput(char **av)
 void fill_stack_a(t_stack **a, char **av)
 {
     int i;
-    long n;
+    int n;
 
     i = 0;
     while (av[i])
     {
-        if (correct_imput(av[i]) == 1)
-            free_stack(a);
+        // if (correct_imput(*av[i]) == 1)
+            // free_stack(a);
         n = ft_atol(av[i]);
         if (n > INT_MAX || n < INT_MIN)
-            free_error(a);
+            // free_error(a);
         if (duplicate_error(*a, n) == 1)
-            free_error(a);
+            // free_error(a);
         add_node(a, n);
         i++;
     }

@@ -12,50 +12,50 @@
 
 #include "../includes/push_swap.h"
 
-int   stack_sorted(t_stack **a) 
+// void  find_lowest(t_stack *stack)
+// {
+//    t_stack *current;
+//    t_stack *low_value;
+//    int   min;
+
+//    min = INT_MAX;
+//    current = *stack;
+//    low_value = *stack;
+//    while (current)
+//    {
+//       if (current->value < min)
+//       {
+//          low_value = current;
+//          min = low_value->value;
+//       }
+//       current = current->next;
+//    }
+// }
+
+void  define_cheapest(t_stack *a)
 {
-   t_stack  *current;
+   int cheapest;
 
-   current = *a;
-   while (current->next)
+   cheapest = INT_MAX;
+   while (a)
    {
-      if (current->value > current->next->value)
-         return (0);
-      current = current->next;
-   }
-   return (1);
-}
-
-t_stack  *find_lowest(t_stack **stack)
-{
-   t_stack *current;
-   t_stack *low_value;
-   int   min;
-
-   min = INT_MAX;
-   current = *stack;
-   low_value = *stack;
-   while (current)
-   {
-      if (current->value < min)
+      if (a->cost < cheapest)
       {
-         low_value = current;
-         min = low_value->value;
+         cheapest = a->cost;
+         a->cheap = a->cost;
       }
-      current = current->next;
+      a = a->next;
    }
-   return (low_value);
 }
 
-t_stack   *find_highest(t_stack **stack)
+t_stack   *find_highest(t_stack *stack)
 {
    t_stack *current;
    t_stack *big_value;
    int   max;
 
    max = INT_MIN;
-   current = *stack;
-   big_value = *stack;
+   current = stack;
    while (current)
    {
       if (current->value > max)
@@ -68,32 +68,63 @@ t_stack   *find_highest(t_stack **stack)
    return (big_value);
 }
 
-t_stack  *define_target(t_stack *node, t_stack **stack)
+void  define_cost(t_stack *a, t_stack *b)
 {
-   t_stack *current;
-   t_stack  *target;
-   int min;
+   int   size_a;
+   int   size_b;
 
-   min = INT_MIN;
-   current = *stack;
-   while (current)
+   size_a = ft_lstsize(a);
+   size_b = ft_lstsize(b);
+   while (a)
    {
-      if (node->value > current->value && current->value > min)
+      if (a->median == 0)
       {
-         target = current;
-         min = target->value;
+         a->cost = a->index;
+      }
+      if (a->median == 1)
+      {
+         a->cost = size_a - a->index;
       }
       else
       {
-         target = find_highest(stack);
+         a->cost += (size_b - a->target_node->index);
       }
-      current = current->next;
+      a = a->next;
    }
-   target->index = node_pos(stack, target);
-   return (target);
 }
 
-void   node_pos(t_stack *stack)
+void  define_target(t_stack *a, t_stack *b)
+{
+   t_stack  *current_b;
+   t_stack  *target;
+   int closest_min;
+
+   while (a)
+   {
+      closest_min = INT_MIN;
+      current_b = b;
+      while (current_b)
+      {      
+         if (a->value > current_b->value && current_b->value > closest_min)
+         {
+            closest_min = current_b->value;
+            target = current_b;
+         }
+         current_b = current_b->next;
+      }
+      if (closest_min == INT_MIN)
+      {
+         a->target_node = find_highest(b);
+      }
+      else
+      {
+         a->target_node = target;
+      }
+      a = a->next;
+   }
+}
+
+void   get_index(t_stack *stack)
 {
    int i;
    int median;
@@ -104,25 +135,15 @@ void   node_pos(t_stack *stack)
    {
       stack->index = i;
       if (i <= median)
-         stack->median_up = 0;
+      {
+         stack->median = 0;
+      }
       else
-         stack->median_up = 1;
+      {
+         stack->median = 1;
+      }
       stack = stack->next;
       i++;
-   }
-}
-
-t_stack  *calcul_cost(t_stack **a, t_stack **b)
-{
-   t_stack *current_a;
-   t_stack *current_b;
-   int   tmp;
-
-   current_a = *a;
-   current_b = *b;
-   while (current_a)
-   {
-      
    }
 }
 
@@ -130,34 +151,30 @@ void  small_sort(t_stack **stack)
 {
    t_stack *highest;
 
-   highest = find_highest(stack);
+   highest = find_highest(*stack);
    if ((*stack)->value == highest->value)
+   {
       rotate_a(stack);
+   }
    else if ((*stack)->next->value == highest->value)
+   {
       rotate_a(stack);
+   }
    if ((*stack)->value > (*stack)->next->value)
+   {
       swap_a(stack);
+   }
 }
 
 // void  sort_stack(t_stack **a, t_stack **b)
 // {
 //    if (ft_lstsize(*a) > 3)
-//    {
 //       push_a(b, a);
+//    if (ft_lstsize(*a) > 3)
 //       push_a(b, a);
-//    }
 //    while (ft_lstsize(*a) != 3)
 //    {
-//       target_node(a, *b);
-//       push_a(b, a);
+      
 //    }
 //    small_sort(a);
 // }
-
-
-
-// node_pos(a);
-// node_pos(b);
-// define_target(a, b);
-// calcule_cost(a, b);
-// define_cheapest(a);

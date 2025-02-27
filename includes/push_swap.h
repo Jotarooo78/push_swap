@@ -13,8 +13,9 @@ typedef struct s_stack
     int value;
     int index;
     int cost;
-    int median_up;
+    int median;
     int cheap;
+    int highest;
 
     struct s_stack *next;
     struct s_stack *target_node;
@@ -25,17 +26,16 @@ typedef struct s_stack
 
 t_stack	*ft_lstlast(t_stack *lst);
 int ft_lstsize(t_stack *lst);
-int add_node(t_stack **list, int n);
-
+void add_node(t_stack **list, int nb);
 // printf functions
 
 int	ft_putchar(char c);
 int	ft_putstr(const char *str);
 int	ft_putnbr_base(long n, char *base, int baselen);
-int	check_arg(int ac, char **av);
+int	check_argument(void *ptr);
 int	ft_strlen(const char *str);
-int	ft_printf(const char *str, ...);
 int	ft_unsigned_putnbr_base(unsigned long n, char *base, int baselen);
+int	ft_printf(const char *str, ...);
 
 // instruction functions
 
@@ -63,15 +63,19 @@ int	only_valid_characters(char c);
 int duplicate_error(t_stack *a, int n);
 int	correct_imput(char **av);
 void fill_stack_a(t_stack **a, char **av);
+char	**ft_split(char *s, char c);
 
 // sort functions
 
 int   stack_sorted(t_stack **stack_a);
-t_stack   *find_highest(t_stack **stack);
-t_stack  *find_lowest(t_stack **stack);
-void   node_pos(t_stack *stack);
+t_stack   *find_highest(t_stack *stack);
+t_stack  *find_lowest(t_stack *stack);
 void  small_sort(t_stack **stack);
 void  sort_stack(t_stack **stack_a, t_stack **stack_b);
-t_stack  *define_target(t_stack *node, t_stack **stack);
+void   get_index(t_stack *stack);
+void  define_target(t_stack *a, t_stack *b);
+void  define_cost(t_stack *a, t_stack *b);
+void  define_cheapest(t_stack *a);
+void  init_stack(t_stack *a, t_stack *b);
 
 #endif
