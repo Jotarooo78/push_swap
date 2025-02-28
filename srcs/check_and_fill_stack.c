@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   check_and_fill_stack.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:23:18 by armosnie          #+#    #+#             */
-/*   Updated: 2025/02/26 16:31:57 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/28 16:25:41 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-int	only_valid_characters(char c)
+bool	only_valid_characters(char c)
 {
 	while ((c >= '0' && c <= '9') || c == '-' || c == '+')
-		return (1);
-	return (0);
+		return (true);
+	return (false);
 }
 
 long	ft_atol(char *nbr)
@@ -24,7 +24,7 @@ long	ft_atol(char *nbr)
 	int		i;
 	long	res;
 	int		neg;
-    
+
 	i = 0;
 	res = 0;
 	neg = 1;
@@ -44,53 +44,51 @@ long	ft_atol(char *nbr)
 	return (res * neg);
 }
 
-int duplicate_error(t_stack *a, int n)
+bool	duplicate_error(t_stack *a, int n)
 {
-    while (a)
-    {
-        if (a->value == n)
-            return (1);
-        a = a->next;
-    }
-    return (0);
+	t_stack *tmp;
+
+	tmp = a;
+	while (tmp)
+	{
+		if (tmp->value == n)
+			return (false);
+		tmp = tmp->next;
+	}
+	return (true);
 }
 
-int correct_imput(char **av)
+bool	correct_input(char *av)
 {
-    int i;
-    int j;
+	int	i;
 
-    i = 0;
-    j = 0;
-    while (av[i])
-    {
-        while (av[i][j])
-        {
-            if (only_valid_characters(av[i][j]) == 1)
-                return (1);
-            j++;
-        }
-        i++;
-    }
-    return (0);
+	i = 0;
+	while (av[i])
+	{
+		if (only_valid_characters(av[i]) == false)
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
-void fill_stack_a(t_stack **a, char **av)
+bool	fill_stack_a(t_stack **a, char **tmp)
 {
-    int i;
-    int n;
+	int i;
+	int n;
 
-    i = 0;
-    while (av[i])
-    {
-        // if (correct_imput(*av[i]) == 1)
-            // free_stack(a);
-        n = ft_atol(av[i]);
-        if (n > INT_MAX || n < INT_MIN)
-            // free_error(a);
-        if (duplicate_error(*a, n) == 1)
-            // free_error(a);
-        add_node(a, n);
-        i++;
-    }
+	i = 0;
+	while (tmp[i])
+	{
+		if (correct_input(tmp[i]) == false)
+			return (false);
+		n = ft_atol(tmp[i]);
+		if (n > INT_MAX || n < INT_MIN)
+			return (false);
+		if (duplicate_error(*a, n) == false)
+			return (false);
+		add_node(a, n);
+		i++;
+	}
+	return (true);
 }

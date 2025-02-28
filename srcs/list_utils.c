@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:03:49 by armosnie          #+#    #+#             */
-/*   Updated: 2025/02/26 16:29:39 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/28 18:15:19 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,28 @@ t_stack	*ft_lstlast(t_stack *lst)
 	return (lst);
 }
 
-void add_node(t_stack **list, int nb) 
+void	add_node(t_stack **list, int nb)
 {
-  t_stack *node;
-  t_stack *current;
+	t_stack *node;
+	t_stack *current;
 
-  node = malloc(sizeof(t_stack));
-  if (node == NULL)
-   	return ;
-  node->value = nb;
-  node->next = NULL;
-  if (*list == NULL)
-   	*list = node;
-  else 
-  {
-   	current = *list;
-   	while (current->next)
-      	current = current->next;
-   	current->next = node;
-  }
+	node = malloc(sizeof(t_stack));
+	if (node == NULL)
+		return ;
+	node->value = nb;
+	node->index = 0;
+	node->cost = 0;
+	node->median = 0;
+	node->cheap = false;
+	node->target_node = NULL;
+	node->next = NULL;
+	if (*list == NULL)
+		*list = node;
+	else
+	{
+		current = *list;
+		while (current->next)
+			current = current->next;
+		current->next = node;
+	}
 }
