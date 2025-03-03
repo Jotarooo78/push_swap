@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:00:53 by armosnie          #+#    #+#             */
-/*   Updated: 2025/03/03 12:01:39 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/03 13:06:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void print_stack(t_stack **a, t_stack **b)
         ft_printf("\n");
         tmp_a = tmp_a->next;
     }
-    ft_printf("b stack : \n");
+    ft_printf("\nb stack : \n\n");
     t_stack *tmp_b = *b;
     while (tmp_b)
     {
@@ -106,7 +106,7 @@ int	main(int ac, char **av)
 	else if (ac == 2)
 		tmp = ft_split(av[1], ' ');
 	if (fill_stack_a(&a, tmp) == false)
-		free_stack(a);
+		return (free_array(tmp), free_stack(a), 0);
 	if (stack_sorted(&a) == false)
 	{
 		if (ft_lstsize(a) == 2)

@@ -16,45 +16,6 @@
 #include "../includes/push_swap.h"
 
 
-// void  find_lowest(t_stack *stack)
-// {
-//    t_stack *current;
-//    t_stack *low_value;
-//    int   min;
-
-//    min = INT_MAX;
-//    current = *stack;
-//    low_value = *stack;
-//    while (current)
-//    {
-//       if (current->value < min)
-//       {
-//          low_value = current;
-//          min = low_value->value;
-//       }
-//       current = current->next;
-//    }
-// }
-
-t_stack	*find_highest(t_stack *stack)
-{
-	t_stack *current;
-	t_stack *big_value = NULL;
-	int max;
-
-	max = INT_MIN;
-	current = stack;
-	while (current)
-	{
-		if (current->value > max)
-		{
-			big_value = current;
-			max = big_value->value;
-		}
-		current = current->next;
-	}
-	return (big_value);
-}
 
 void	small_sort(t_stack **stack)
 {
@@ -75,6 +36,25 @@ void	small_sort(t_stack **stack)
 	}
 }
 
+void	prep_to_push(t_stack *a, t_stack *b)
+{
+	while (a)
+		if (a->cheap == true)
+			break ;
+	while (a && a->next->index != 0)
+	{
+		if (a->median == 0)
+			rotate_a(&a);
+		else if (a->median == 1)
+			rev_rotate_a(&a);
+	}
+}
+
+void	move_a_to_b(t_stack *a, t_stack *b)
+{
+	prep_to_push(a, b);
+}
+
 void	sort_stack(t_stack **a, t_stack **b)
 {
 	if (ft_lstsize(*a) > 3)
@@ -82,4 +62,5 @@ void	sort_stack(t_stack **a, t_stack **b)
 	if (ft_lstsize(*a) > 3)
 		push_a(a, b);
 	init_stack(*a, *b);
+	move_a_to_b(*a, *b);
 }
