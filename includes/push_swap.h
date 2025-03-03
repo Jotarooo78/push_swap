@@ -21,7 +21,7 @@ typedef struct s_stack
 
 }					t_stack;
 
-// list functions
+// utils list functions
 
 t_stack				*ft_lstlast(t_stack *lst);
 int					ft_lstsize(t_stack *lst);
@@ -73,11 +73,11 @@ bool					stack_sorted(t_stack **stack_a);
 t_stack				*find_highest(t_stack *stack);
 t_stack				*find_lowest(t_stack *stack);
 void				small_sort(t_stack **stack);
+void				init_stack(t_stack *a, t_stack *b);
 void				sort_stack(t_stack **stack_a, t_stack **stack_b);
 void				get_index(t_stack *stack);
 void				define_target(t_stack *a, t_stack *b);
 void				define_cost(t_stack *a, t_stack *b);
 void				define_cheapest(t_stack *a);
-void				init_stack(t_stack *a, t_stack *b);
 
 #endif
