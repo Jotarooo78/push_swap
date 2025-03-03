@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:00:53 by armosnie          #+#    #+#             */
-/*   Updated: 2025/02/28 18:12:27 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:01:39 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,6 @@ bool	stack_sorted(t_stack **a)
 	return (true);
 }
 
-void	init_stack(t_stack *a, t_stack *b)
-{
-	get_index(a);
-	get_index(b);
-	define_target(a, b);
-	define_cost(a, b);
-	define_cheapest(a);
-}
-
 int	main(int ac, char **av)
 {
 	t_stack	*a;
@@ -122,11 +113,8 @@ int	main(int ac, char **av)
 			swap_a(&a);
 		else if (ft_lstsize(a) == 3)
 			small_sort(&a);
-		if (ft_lstsize(a) > 3)
-			push_a(&a, &b);
-		if (ft_lstsize(a) > 3)
-			push_a(&a, &b);
-		init_stack(a, b);
+		else
+			sort_stack(&a, &b);
 	}
 	print_stack(&a, &b);
 	free_array(tmp);
