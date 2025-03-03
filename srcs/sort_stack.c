@@ -36,23 +36,25 @@ void	small_sort(t_stack **stack)
 	}
 }
 
-void	prep_to_push(t_stack *a, t_stack *b)
+void	prep_to_push(t_stack **a, t_stack **b)
 {
-	while (a)
-		if (a->cheap == true)
-			break ;
-	while (a && a->next->index != 0)
+	t_stack *current;
+
+	current = *a;
+	while (current->cheap != true)
 	{
-		if (a->median == 0)
-			rotate_a(&a);
-		else if (a->median == 1)
-			rev_rotate_a(&a);
+		if (current->median == 0)
+			rotate_a(a);
+		else if (current->median == 1)
+			rev_rotate_a(a);
+		current = current->next;
 	}
+	push_a(a, b);
 }
 
-void	move_a_to_b(t_stack *a, t_stack *b)
+void	move_a_to_b(t_stack **a, t_stack **b)
 {
-	prep_to_push(a, b);
+	prep_to_push_a(a, b);
 }
 
 void	sort_stack(t_stack **a, t_stack **b)
@@ -62,5 +64,5 @@ void	sort_stack(t_stack **a, t_stack **b)
 	if (ft_lstsize(*a) > 3)
 		push_a(a, b);
 	init_stack(*a, *b);
-	move_a_to_b(*a, *b);
+	move_a_to_b(a, b);
 }

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:00:53 by armosnie          #+#    #+#             */
-/*   Updated: 2025/03/03 13:06:49 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/03 16:40:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void print_stack(t_stack **a, t_stack **b)
 {
-    ft_printf("a stack : \n");
+    ft_printf("\na stack : \n\n");
     t_stack *tmp_a = *a;
     while (tmp_a)
     {
@@ -57,7 +57,8 @@ void	free_stack(t_stack *stack)
 	{
 		tmp = stack;
 		stack = stack->next;
-		free(tmp);
+		ft_printf("Freeing node with value: %d\n", tmp->value);
+   	free(tmp);
 	}
 }
 
