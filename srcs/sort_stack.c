@@ -38,25 +38,23 @@ void	small_sort(t_stack **stack)
 
 void	top_node_a_setup(t_stack **a, t_stack *top_node)
 {
-	while (*a != top_node && (*a)->median == 0)
+	while (*a != top_node)
 	{
-		rotate_a(a);
-	}
-	while (*a != top_node && (*a)->median == 1)
-	{
-		rotate_a(a);
+		if ((*a)->median == 0)
+			rotate_a(a);
+		else if ((*a)->median == 1)
+			rev_rotate_a(a);
 	}
 }
 
 void	top_node_b_setup(t_stack **b, t_stack *top_node)
 {
-	while (*b != top_node && (*b)->median == 0)
+	while (*b != top_node)
 	{
-		rotate_b(b);
-	}
-	while (*b != top_node && (*b)->median == 1)
-	{
-		rev_rotate_b(b);
+		if ((*b)->median == 0)
+			rotate_b(b);
+		else if ((*b)->median == 1)
+			rev_rotate_b(b);
 	}
 }
 
