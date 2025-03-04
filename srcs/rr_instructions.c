@@ -70,3 +70,12 @@ int	rotate_rr(t_stack **a, t_stack **b)
 	}
 	return (1);
 }
+void	double_rotate(t_stack **a, t_stack **b, t_stack *cheapest_node)
+{
+	while (*a != cheapest_node && *b != cheapest_node->target_node)
+	{
+		rotate_rr(a, b);
+	}
+	get_index(*a);
+	get_index(*b);
+}

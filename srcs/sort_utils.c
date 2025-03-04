@@ -51,3 +51,15 @@ t_stack	*find_highest(t_stack *stack)
 	}
 	return (big_value);
 }
+
+t_stack	*get_cheapest_node(t_stack **a)
+{
+	t_stack *current;
+
+	current = *a;
+	while (current->cheap != true)
+	{
+		current = current->next;
+	}
+	return (current);
+}
