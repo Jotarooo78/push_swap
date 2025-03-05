@@ -19,13 +19,23 @@ void	setup_min_top(t_stack **a)
 
 	min = find_lowest(*a);
 	top = *a;
+	printf("min->value = %d\n", min->value);
+	printf("before top->value = %d\n", top->value);
+	print_stack_a(a);
 	while (top->value != min->value)
 	{
-		if (top->median == 0)
+		if (min->median == 0)
+		{
 			rotate_a(a);
-		else if (top->median == 1)
+			sleep(1);
+		}
+		else if (min->median == 1)
+		{
 			rev_rotate_a(a);
+			sleep(1);
+		}
 		top = *a;
+		printf("top->value = %d\n", top->value);
 	}
 }
 
