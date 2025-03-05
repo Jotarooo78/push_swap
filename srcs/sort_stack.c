@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algorithm.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+
-	+:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+
-	+#+        */
-/*                                                +#+#+#+#+#+
-	+#+           */
-/*   Created: 2025/01/30 10:08:49 by marvin            #+#    #+#             */
-/*   Updated: 2025/01/30 10:08:49 by marvin           ###   ########.fr       */
+/*   sort_stack.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 17:09:15 by marvin            #+#    #+#             */
+/*   Updated: 2025/03/05 17:09:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
+void	setup_min_top(t_stack **a)
+{
+	t_stack *min;
+	t_stack *top;
 
+	min = find_lowest(*a);
+	top = *a;
+	while (top->value != min->value)
+	{
+		if (top->median == 0)
+			rotate_a(a);
+		else if (top->median == 1)
+			rev_rotate_a(a);
+		top = *a;
+	}
+}
 
 void	small_sort(t_stack **stack)
 {
@@ -36,26 +48,22 @@ void	small_sort(t_stack **stack)
 	}
 }
 
-void	top_node_a_setup(t_stack **a, t_stack *top_node)
+void	move_b_to_a(t_stack **a, t_stack **b)
 {
-	while (*a != top_node)
-	{
-		if ((*a)->median == 0)
-			rotate_a(a);
-		else if ((*a)->median == 1)
-			rev_rotate_a(a);
-	}
-}
+	t_stack *top_node;
+	t_stack *target;
 
-void	top_node_b_setup(t_stack **b, t_stack *top_node)
-{
-	while (*b != top_node)
+	top_node = *a;
+	target = (*b)->target_node;
+	while (top_node->value != target->value)
 	{
-		if ((*b)->median == 0)
-			rotate_b(b);
-		else if ((*b)->median == 1)
-			rev_rotate_b(b);
+		if (target->median == 0)
+			rotate_a(a);
+		else if (target->median == 1)
+			rev_rotate_a(a);
+		top_node = *a;
 	}
+	push_b(b, a);
 }
 
 void	move_a_to_b(t_stack **a, t_stack **b)
@@ -74,19 +82,20 @@ void	move_a_to_b(t_stack **a, t_stack **b)
 
 void	sort_stack(t_stack **a, t_stack **b)
 {
-	if (ft_lstsize(*a) > 3 && stack_sorted(a) == false)
+	if (ft_lstsize(*a) > 3)
 		push_a(a, b);
-	if (ft_lstsize(*a) > 3 && stack_sorted(a) == false)
+	if (ft_lstsize(*a) > 3)
 		push_a(a, b);
-	while (ft_lstsize(*a) > 3 && stack_sorted(a) == false)
+	while (ft_lstsize(*a) > 3)
 	{ 
 		init_stack_a(*a, *b);
 		move_a_to_b(a, b);
 	}
 	small_sort(a);
-	// while (*b)
-	// {
-	// 	init_stack_b(*a, *b);
-	// 	move_b_to_a(a, b);
-	// }
+	while (*b)
+	{
+		init_stack_b(*a, *b);
+		move_b_to_a(a, b);
+	}
+	setup_min_top(a);
 }

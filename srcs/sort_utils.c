@@ -12,25 +12,25 @@
 
 #include "../includes/push_swap.h"
 
-// void  find_lowest(t_stack *stack)
-// {
-//    t_stack *current;
-//    t_stack *low_value;
-//    int   min;
+t_stack  *find_lowest(t_stack *stack)
+{
+   t_stack *current;
+   t_stack *low_value = NULL;
+   int   min;
 
-//    min = INT_MAX;
-//    current = *stack;
-//    low_value = *stack;
-//    while (current)
-//    {
-//       if (current->value < min)
-//       {
-//          low_value = current;
-//          min = low_value->value;
-//       }
-//       current = current->next;
-//    }
-// }
+   min = INT_MAX;
+   current = stack;
+   while (current)
+   {
+      if (current->value < min)
+      {
+         low_value = current;
+         min = low_value->value;
+      }
+      current = current->next;
+   }
+	return (low_value);
+}
 
 t_stack	*find_highest(t_stack *stack)
 {
@@ -50,6 +50,28 @@ t_stack	*find_highest(t_stack *stack)
 		current = current->next;
 	}
 	return (big_value);
+}
+
+void	top_node_a_setup(t_stack **a, t_stack *top_node)
+{
+	while (*a != top_node)
+	{
+		if (top_node->median == 0)
+			rotate_a(a);
+		else if (top_node->median == 1)
+			rev_rotate_a(a);
+	}
+}
+
+void	top_node_b_setup(t_stack **b, t_stack *top_node)
+{
+	while (*b != top_node)
+	{
+		if (top_node->median == 0)
+			rotate_b(b);
+		else if (top_node->median == 1)
+			rev_rotate_b(b);
+	}
 }
 
 t_stack	*get_cheapest_node(t_stack **a)

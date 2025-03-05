@@ -1,20 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_instructions.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
-/*   Created: 2025/01/27 14:38:15 by marvin            #+#    #+#             */
-/*   Updated: 2025/01/27 14:38:15 by marvin           ###   ########.fr       */
+/*   p_instructions.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 17:09:26 by marvin            #+#    #+#             */
+/*   Updated: 2025/03/05 17:09:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
 
 void	push(t_stack **stack_src, t_stack **stack_dest)
 {
@@ -24,10 +20,6 @@ void	push(t_stack **stack_src, t_stack **stack_dest)
 	(*stack_src)->next = *stack_dest;
 	*stack_dest = *stack_src;        
 	*stack_src = tmp;
-	// tmp = *stack_src;
-	// *stack_src = (*stack_src)->next;
-	// tmp->next = *stack_dest;
-	// *stack_dest = tmp;
 }
 
 int	push_b(t_stack **b, t_stack **a)

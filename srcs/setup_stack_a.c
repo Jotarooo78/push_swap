@@ -56,7 +56,7 @@ void	define_cost(t_stack *a, t_stack *b)
 	}
 }
 
-void	define_target(t_stack *a, t_stack *b)
+void	define_target_b(t_stack *a, t_stack *b)
 {
 	t_stack *current_b;
 	t_stack *target;
@@ -77,13 +77,9 @@ void	define_target(t_stack *a, t_stack *b)
 			current_b = current_b->next;
 		}
 		if (closest_min == INT_MIN)
-		{
 			a->target_node = find_highest(b);
-		}
 		else
-		{
 			a->target_node = target;
-		}
 		a = a->next;
 	}
 }
@@ -98,7 +94,7 @@ void	get_index(t_stack *stack)
 	while (stack)
 	{
 		stack->index = i;
-		if (i <= median)
+		if (i < median)
 		{
 			stack->median = 0;
 		}
@@ -111,11 +107,11 @@ void	get_index(t_stack *stack)
 	}
 }
 
-void	init_stack(t_stack *a, t_stack *b)
+void	init_stack_a(t_stack *a, t_stack *b)
 {
 	get_index(a);
 	get_index(b);
-	define_target(a, b);
+	define_target_b(a, b);
 	define_cost(a, b);
 	define_cheapest(a);
 }

@@ -2,7 +2,7 @@ NAME = push_swap
 
 CC = cc
 
-SRCS = main.c check_and_fill_stack.c list_utils.c p_instructions.c rr_instructions.c rrr_instructions.c s_instructions.c init_stack_a.c sort_utils.c sort_stack.c ft_split.c ft_printf_function.c ft_printf.c
+SRCS = srcs/main.c srcs/check_and_fill_stack.c srcs/list_utils.c srcs/p_instructions.c srcs/rr_instructions.c srcs/rrr_instructions.c srcs/s_instructions.c srcs/setup_stack_a.c srcs/setup_stack_b.c srcs/sort_utils.c srcs/sort_stack.c srcs/ft_split.c srcs/ft_printf_function.c srcs/ft_printf.c
 
 INCLUDES = push_swap.h
 
