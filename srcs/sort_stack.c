@@ -12,33 +12,6 @@
 
 #include "../includes/push_swap.h"
 
-void	setup_min_top(t_stack **a)
-{
-	t_stack *min;
-	t_stack *top;
-
-	min = find_lowest(*a);
-	top = *a;
-	printf("min->value = %d\n", min->value);
-	printf("before top->value = %d\n", top->value);
-	print_stack_a(a);
-	while (top->value != min->value)
-	{
-		if (min->median == 0)
-		{
-			rotate_a(a);
-			sleep(1);
-		}
-		else if (min->median == 1)
-		{
-			rev_rotate_a(a);
-			sleep(1);
-		}
-		top = *a;
-		printf("top->value = %d\n", top->value);
-	}
-}
-
 void	small_sort(t_stack **stack)
 {
 	t_stack *highest;
@@ -55,6 +28,33 @@ void	small_sort(t_stack **stack)
 	if ((*stack)->value > (*stack)->next->value)
 	{
 		swap_a(stack);
+	}
+}
+
+void	setup_min_top(t_stack **a)
+{
+	t_stack *min;
+	t_stack *top_node;
+
+	min = find_lowest(*a);
+	top_node = *a;
+	printf("before min->value = %d\n", min->value);
+	printf("before top_node->value = %d\n", top_node->value);
+	while (top_node->value != min->value)
+	{
+		if (min->median == 0)
+		{
+			rotate_a(a);
+			min = find_lowest(*a);
+		}
+		else if (min->median == 1)
+		{
+			rev_rotate_a(a);
+			min = find_lowest(*a);
+		}
+		top_node = *a;
+		printf("after min->value = %d\n", min->value);
+		printf("after top_node->value = %d\n", top_node->value);
 	}
 }
 
@@ -107,5 +107,6 @@ void	sort_stack(t_stack **a, t_stack **b)
 		init_stack_b(*a, *b);
 		move_b_to_a(a, b);
 	}
+	get_index(*a);
 	setup_min_top(a);
 }

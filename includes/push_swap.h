@@ -38,8 +38,6 @@ int					ft_unsigned_putnbr_base(unsigned long n, char *base,
 						int baselen);
 int					ft_printf(const char *str, ...);
 void					print_stack(t_stack **a, t_stack **b);
-void	print_stack_b(t_stack **b);
-void print_stack_a(t_stack **a);
 
 // instruction functions
 
