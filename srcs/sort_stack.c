@@ -42,17 +42,23 @@ void	setup_min_top(t_stack **a)
 
 	min = find_lowest(*a);
 	top_node = *a;
+	// printf("start min->value = %d\n", min->value);
+	// printf("start top_node->value = %d\n", top_node->value);
 	while (top_node != min)
 	{
 		if (min->median == 0)
 		{
 			rotate_a(a);
 			// sleep(1);
+			// printf("mid min->value = %d\n", min->value);
+			// printf("mid top_node->value = %d\n", top_node->value);
 		}
 		else if (min->median == 1)
 		{
 			rev_rotate_a(a);
 			// sleep(1);
+			// printf("mid min->value = %d\n", min->value);
+			// printf("mid top_node->value = %d\n", top_node->value);
 		}
 		top_node = *a;
 	}

@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:00:53 by armosnie          #+#    #+#             */
-/*   Updated: 2025/03/06 16:46:04 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:59:49 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	free_stack(t_stack *stack)
 	{
 		tmp = stack;
 		stack = stack->next;
-		ft_printf("Freeing node with value: %d\n", tmp->value);
+		// ft_printf("Freeing node with value: %d\n", tmp->value);
 		free(tmp);
 	}
 }
