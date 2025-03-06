@@ -2,15 +2,19 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   sort_stack.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                    +:+ +:+        
+	+:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+      
+	+#+        */
+/*                                                +#+#+#+#+#+  
+	+#+           */
 /*   Created: 2025/03/05 17:09:15 by marvin            #+#    #+#             */
 /*   Updated: 2025/03/05 17:09:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
 
 void	small_sort(t_stack **stack)
 {
@@ -38,23 +42,19 @@ void	setup_min_top(t_stack **a)
 
 	min = find_lowest(*a);
 	top_node = *a;
-	printf("before min->value = %d\n", min->value);
-	printf("before top_node->value = %d\n", top_node->value);
-	while (top_node->value != min->value)
+	while (top_node != min)
 	{
 		if (min->median == 0)
 		{
 			rotate_a(a);
-			min = find_lowest(*a);
+			// sleep(1);
 		}
 		else if (min->median == 1)
 		{
 			rev_rotate_a(a);
-			min = find_lowest(*a);
+			// sleep(1);
 		}
 		top_node = *a;
-		printf("after min->value = %d\n", min->value);
-		printf("after top_node->value = %d\n", top_node->value);
 	}
 }
 
@@ -83,9 +83,12 @@ void	move_a_to_b(t_stack **a, t_stack **b)
 	cheapest_node = get_cheapest_node(a);
 	if (cheapest_node->median == 0 && cheapest_node->target_node->median == 0)
 		double_rotate(a, b, cheapest_node);
-	else if (cheapest_node->median == 1 && cheapest_node->target_node->median == 1)
+	else if (cheapest_node->median == 1
+		&& cheapest_node->target_node->median == 1)
 		double_rev_rotate(a, b, cheapest_node);
 	top_node_a_setup(a, cheapest_node);
+	// print_stack(a, b);
+	// printf("cheapest_node->value = %d\n", cheapest_node->value);
 	top_node_b_setup(b, cheapest_node->target_node);
 	push_a(a, b);
 }
@@ -97,7 +100,7 @@ void	sort_stack(t_stack **a, t_stack **b)
 	if (ft_lstsize(*a) > 3)
 		push_a(a, b);
 	while (ft_lstsize(*a) > 3)
-	{ 
+	{
 		init_stack_a(*a, *b);
 		move_a_to_b(a, b);
 	}

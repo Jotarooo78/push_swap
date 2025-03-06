@@ -16,10 +16,28 @@ void	push(t_stack **stack_src, t_stack **stack_dest)
 {
 	t_stack *tmp;
 
-	tmp = (*stack_src)->next;        
-	(*stack_src)->next = *stack_dest;
-	*stack_dest = *stack_src;        
-	*stack_src = tmp;
+	if (!stack_src)
+		return;
+	tmp = *stack_src;
+	*stack_src = tmp->next;
+	if (!stack_dest)
+	{
+		tmp->next = NULL;
+		*stack_dest = tmp;
+	}
+	else
+	{
+		tmp->next = *stack_dest;
+		*stack_dest = tmp;
+	}
+	// tmp = (*stack_src)->next;
+	// (*stack_src)->next = *stack_dest;
+	// if (!dest)
+	// {
+	// 	stack_src->next = NULL;
+	// 	*stack_dest = *stack_src;
+	// }        
+	// *stack_src = tmp;
 }
 
 int	push_b(t_stack **b, t_stack **a)

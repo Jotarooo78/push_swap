@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   rotate_instructions.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
+/*                                                    +:+ +:+
 	+:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+      
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+
 	+#+        */
-/*                                                +#+#+#+#+#+  
+/*                                                +#+#+#+#+#+
 	+#+           */
 /*   Created: 2025/01/28 20:27:12 by marvin            #+#    #+#             */
 /*   Updated: 2025/01/28 20:27:12 by marvin           ###   ########.fr       */
@@ -19,20 +19,13 @@
 void	rotate(t_stack **stack)
 {
 	t_stack *head;
-	t_stack *current;
-	int swap;
+	t_stack *stock;
 
 	head = *stack;
-	current = head->next;
-	while (head->next)
-	{
-		swap = head->value;
-		head->value = current->value;
-		current->value = swap;
-		head = head->next;
-		if (current->next)
-			current = current->next;
-	}
+	stock = ft_lstlast(*stack);
+	*stack = head->next;
+	head->next = NULL;
+	stock->next = head;
 }
 int	rotate_a(t_stack **a)
 {

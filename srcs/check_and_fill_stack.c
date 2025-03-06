@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:23:18 by armosnie          #+#    #+#             */
-/*   Updated: 2025/02/28 16:25:41 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:16:00 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ long	ft_atol(char *nbr)
 
 bool	duplicate_error(t_stack *a, int n)
 {
-	t_stack *tmp;
+	t_stack	*tmp;
 
 	tmp = a;
 	while (tmp)
