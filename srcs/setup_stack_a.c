@@ -43,16 +43,19 @@ void	define_cost(t_stack *a, t_stack *b)
 	size_b = ft_lstsize(b);
 	while (a)
 	{
-		a->cost = 0;
 		if (a->median == 0)
 		{
 			a->cost = a->index;
 		}
-		if (a->median == 1)
+		else if (a->median == 1)
 		{
 			a->cost = size_a - a->index;
 		}
-		else
+		if (a->target_node->median == 0)
+		{
+			a->cost += a->target_node->index;
+		}
+		else if (a->target_node->median == 1)
 		{
 			a->cost += (size_b - a->target_node->index);
 		}

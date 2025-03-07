@@ -15,22 +15,24 @@
 
 #include "../includes/push_swap.h"
 
-
 void	rev_rotate(t_stack **stack)
 {
-	t_stack *before_last_node;
-	t_stack *last_node;
+    t_stack *before_last_node;
+    t_stack *last_node;
 
-	last_node = *stack;
-	before_last_node = *stack;
-	while (before_last_node->next->next)
-		before_last_node = before_last_node->next;
-	while (last_node->next)
-		last_node = last_node->next;
-	last_node->next = *stack;
-	*stack = last_node;
-	before_last_node->next = NULL;
+    if (!stack || !*stack || !(*stack)->next)
+        return;
+    last_node = *stack;
+    before_last_node = *stack;
+    while (before_last_node->next->next)
+        before_last_node = before_last_node->next;
+    while (last_node->next)
+        last_node = last_node->next;
+    last_node->next = *stack;
+    *stack = last_node;
+    before_last_node->next = NULL;
 }
+
 int	rev_rotate_a(t_stack **a)
 {
 	if (ft_lstsize(*a) < 2)
