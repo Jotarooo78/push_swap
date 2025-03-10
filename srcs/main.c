@@ -3,81 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:00:53 by armosnie          #+#    #+#             */
-/*   Updated: 2025/03/07 14:59:22 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:07:14 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	print_stack(t_stack **a, t_stack **b)
+void	init_variables(t_stack **a, t_stack **b, char ***tmp, int *i)
 {
-	t_stack	*tmp_a;
-	t_stack	*tmp_b;
-
-	ft_printf("\na stack : \n\n");
-	tmp_a = *a;
-	while (tmp_a)
-	{
-		ft_printf("value : %d\n", tmp_a->value);
-		ft_printf("index : %d\n", tmp_a->index);
-		ft_printf("cost : %d\n", tmp_a->cost);
-		ft_printf("median : %d\n", tmp_a->median);
-		ft_printf("cheap : %d\n", tmp_a->cheap);
-		if (tmp_a->target_node)
-			ft_printf("target_node : %d\n", tmp_a->target_node->value);
-		else
-			ft_printf("target_node : NULL\n");
-		ft_printf("\n");
-		tmp_a = tmp_a->next;
-	}
-	ft_printf("\nb stack : \n\n");
-	tmp_b = *b;
-	while (tmp_b)
-	{
-		ft_printf("value : %d\n", tmp_b->value);
-		ft_printf("index : %d\n", tmp_b->index);
-		ft_printf("cost : %d\n", tmp_b->cost);
-		ft_printf("median : %d\n", tmp_b->median);
-		ft_printf("cheap : %d\n", tmp_b->cheap);
-		if (tmp_b->target_node)
-			ft_printf("target_node : %d\n", tmp_b->target_node->value);
-		else
-			ft_printf("target_node : NULL\n");
-		ft_printf("\n");
-		tmp_b = tmp_b->next;
-	}
-	ft_printf("NULL\n");
-}
-
-void	free_stack(t_stack *stack)
-{
-	t_stack	*tmp;
-
-	if (!stack)
-		return ;
-	while (stack)
-	{
-		tmp = stack;
-		stack = stack->next;
-		ft_printf("Freeing node with value: %d\n", tmp->value);
-		free(tmp);
-	}
-}
-
-void	free_array(char **split)
-{
-	int	i;
-
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
+	*a = NULL;
+	*b = NULL;
+	*tmp = NULL;
+	*i = 0;
 }
 
 bool	stack_sorted(t_stack **a)
@@ -118,22 +58,24 @@ int	main(int ac, char **av)
 	char	**tmp;
 	int		i;
 
-	i = 0;
-	a = NULL;
-	b = NULL;
-	tmp = NULL;
+	init_variables(&a, &b, &tmp, &i);
 	if (ac == 2)
 	{
-		tmp = ft_split(av[i], ' ');
-		fill_stack_a(&a, tmp);
-	}
-	while (++i < ac - 1)
-	{
+		tmp = ft_split(av[1], ' ');
 		if (fill_stack_a(&a, tmp) == false)
-			return (free_array(tmp), free_stack(a), free_stack(b), write(1,
-					"Error\n", 6), 0);
+			return (free_stack(a), free_stack(b), write(1, "Error\n", 6), 0);
+		free_array(tmp);
 	}
-	all_sort_functions(&a, &b);
-	// print_stack(&a, &b);
-	return (free_stack(a), free_stack(b), free_array(tmp), 0);
+	else if (ac > 2)
+	{
+		while (++i < ac)
+		{
+			tmp = ft_split(av[i], ' ');
+			if (fill_stack_a(&a, tmp) == false)
+				return (free_array(tmp), free_stack(a), free_stack(b), 
+					write(1, "Error\n", 6), 0);
+			free_array(tmp);
+		}
+	}
+	return (all_sort_functions(&a, &b), free_stack(a), free_stack(b), 0);
 }

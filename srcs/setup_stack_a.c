@@ -15,7 +15,6 @@
 
 #include "../includes/push_swap.h"
 
-
 void	define_cheapest(t_stack *a)
 {
 	int cheap_value;

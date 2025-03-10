@@ -26,6 +26,7 @@ typedef struct s_stack
 t_stack				*ft_lstlast(t_stack *lst);
 int					ft_lstsize(t_stack *lst);
 void				add_node(t_stack **list, int nb);
+void	init_variables(t_stack **a, t_stack **b, char ***tmp, int *i);
 
 // printf functions
 
@@ -37,9 +38,8 @@ int					ft_strlen(const char *str);
 int					ft_unsigned_putnbr_base(unsigned long n, char *base,
 						int baselen);
 int					ft_printf(const char *str, ...);
-void				print_stack(t_stack **a, t_stack **b);
-void				print_stack_b(t_stack **b);
-void				print_stack_a(t_stack **a);
+void	print_stack(t_stack *stack);
+
 
 // instruction functions
 
@@ -93,5 +93,11 @@ void				define_target_b(t_stack *a, t_stack *b);
 void				define_target_a(t_stack *a, t_stack *b);
 void				define_cost(t_stack *a, t_stack *b);
 void				define_cheapest(t_stack *a);
+void	all_sort_functions(t_stack **a, t_stack **b);
+
+// free functions
+
+void				free_array(char **split);
+void				free_stack(t_stack *stack);
 
 #endif
