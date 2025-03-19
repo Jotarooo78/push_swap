@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/14 12:13:18 by armosnie          #+#    #+#             */
+/*   Updated: 2025/03/19 11:38:13 by armosnie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -25,8 +37,9 @@ typedef struct s_stack
 
 t_stack				*ft_lstlast(t_stack *lst);
 int					ft_lstsize(t_stack *lst);
-void				add_node(t_stack **list, int nb);
-void	init_variables(t_stack **a, t_stack **b, char ***tmp, int *i);
+bool				add_node(t_stack **list, int nb);
+void				init_variables(t_stack **a, t_stack **b, char ***tmp,
+						int *i);
 
 // printf functions
 
@@ -38,9 +51,8 @@ int					ft_strlen(const char *str);
 int					ft_unsigned_putnbr_base(unsigned long n, char *base,
 						int baselen);
 int					ft_printf(const char *str, ...);
-void print_stack_a(t_stack **s);
-void print_stack_b(t_stack **s);
-
+void				print_stack_a(t_stack **s);
+void				print_stack_b(t_stack **s);
 
 // instruction functions
 
@@ -64,7 +76,7 @@ int					rev_rotate_rr(t_stack **a, t_stack **b);
 void				double_rev_rotate(t_stack **a, t_stack **b,
 						t_stack *cheapest_node);
 
-// push_arsing functions
+// parsing functions
 
 long				ft_atol(char *nbr);
 bool				only_valid_characters(char c);
@@ -93,7 +105,7 @@ void				define_target_b(t_stack *a, t_stack *b);
 void				define_target_a(t_stack *a, t_stack *b);
 void				define_cost(t_stack *a, t_stack *b);
 void				define_cheapest(t_stack *a);
-void	all_sort_functions(t_stack **a, t_stack **b);
+void				all_sort_functions(t_stack **a, t_stack **b);
 
 // free functions
 

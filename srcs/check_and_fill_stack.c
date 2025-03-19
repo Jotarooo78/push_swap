@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:23:18 by armosnie          #+#    #+#             */
-/*   Updated: 2025/03/13 15:28:13 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:35:17 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ long	ft_atol(char *nbr)
 	}
 	while (nbr[i] >= '0' && nbr[i] <= '9')
 	{
-		res = (res * 10) + nbr[i] - '0';
+		res = (res * 10) + (nbr[i] - '0');
 		i++;
 	}
 	return (res * neg);
@@ -79,10 +79,11 @@ bool	correct_input(char *av)
 
 bool	fill_stack_a(t_stack **a, char **tmp)
 {
-	int	i;
-	int	n;
+	int		i;
+	long	n;
 
 	i = 0;
+	n = 0;
 	while (tmp[i])
 	{
 		if (correct_input(tmp[i]) == false)
@@ -92,7 +93,8 @@ bool	fill_stack_a(t_stack **a, char **tmp)
 			return (false);
 		if (duplicate_error(*a, n) == false)
 			return (false);
-		add_node(a, n);
+		if (add_node(a, n) == false)
+			return (false);
 		i++;
 	}
 	return (true);

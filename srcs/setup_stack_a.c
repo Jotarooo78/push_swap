@@ -100,7 +100,7 @@ void	get_index(t_stack *stack)
 	while (stack)
 	{
 		stack->index = i;
-		if (i < median)
+		if (i <= median)
 		{
 			stack->median = 0;
 		}

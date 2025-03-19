@@ -6,7 +6,7 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 11:03:49 by armosnie          #+#    #+#             */
-/*   Updated: 2025/03/13 15:30:48 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:36:04 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ t_stack	*ft_lstlast(t_stack *lst)
 	return (lst);
 }
 
-void	add_node(t_stack **list, int nb)
+bool	add_node(t_stack **list, int nb)
 {
 	t_stack		*node;
 	t_stack		*current;
 
 	node = malloc(sizeof(t_stack));
 	if (node == NULL)
-		return ;
+		return (false);
 	node->value = nb;
 	node->index = 0;
 	node->cost = 0;
@@ -58,4 +58,5 @@ void	add_node(t_stack **list, int nb)
 			current = current->next;
 		current->next = node;
 	}
+	return (true);
 }

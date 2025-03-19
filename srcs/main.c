@@ -6,39 +6,11 @@
 /*   By: armosnie <armosnie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 10:00:53 by armosnie          #+#    #+#             */
-/*   Updated: 2025/03/13 15:31:08 by armosnie         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:37:38 by armosnie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-// void	print_stack_a(t_stack **s)
-// {
-// 	t_stack	*current;
-
-// 	current = *s;
-// 	ft_printf("Stack A: ");
-// 	while (current)
-// 	{
-// 		ft_printf("%d ", current->value);
-// 		current = current->next;
-// 	}
-// 	ft_printf("\n");
-// }
-
-// void	print_stack_b(t_stack **s)
-// {
-// 	t_stack	*current;
-
-// 	current = *s;
-// 	ft_printf("Stack B: ");
-// 	while (current)
-// 	{
-// 		ft_printf("%d ", current->value);
-// 		current = current->next;
-// 	}
-// 	ft_printf("\n");
-// }
 
 void	init_variables(t_stack **a, t_stack **b, char ***tmp, int *i)
 {
@@ -79,6 +51,19 @@ void	all_sort_functions(t_stack **a, t_stack **b)
 	}
 }
 
+bool	one_argument_handle(char **av, t_stack **a, t_stack **b, char **tmp)
+{
+	tmp = ft_split(av[1], ' ');
+	if (fill_stack_a(a, tmp) == false)
+	{
+		free_array(tmp);
+		return (free_stack(*a), free_stack(*b), write(1, "Error\n", 6), false);
+
+	}
+	free_array(tmp);
+	return (true);
+}
+
 int	main(int ac, char **av)
 {
 	t_stack	*a;
@@ -87,14 +72,14 @@ int	main(int ac, char **av)
 	int		i;
 
 	init_variables(&a, &b, &tmp, &i);
-	if (ac == 2)
+	if (ac < 2 || (ac == 2 && av[1][0] == '\0'))
+		return (0);
+	else if (ac == 2)
 	{
-		tmp = ft_split(av[1], ' ');
-		if (fill_stack_a(&a, tmp) == false)
-			return (free_stack(a), free_stack(b), write(1, "Error\n", 6), 0);
-		free_array(tmp);
+		if (one_argument_handle(av, &a, &b, tmp) == false)
+			return (0);
 	}
-	else if (ac > 2)
+	else
 	{
 		while (++i < ac)
 		{
