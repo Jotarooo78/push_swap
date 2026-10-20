@@ -58,7 +58,6 @@ bool	one_argument_handle(char **av, t_stack **a, t_stack **b, char **tmp)
 	{
 		free_array(tmp);
 		return (free_stack(*a), free_stack(*b), write(1, "Error\n", 6), false);
-
 	}
 	free_array(tmp);
 	return (true);
